@@ -14,5 +14,7 @@ const Menu = sequelize.define('menu',
         tableName: 'menu'
     })
 
+
+    
 Menu.belongsTo(Dish)
 module.exports = Menu
