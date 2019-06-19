@@ -28,6 +28,7 @@ router.post('/dishes', function(req, res, next) {
     .catch(err => next(err));
 })
 
+
 //update dish
 router.put('/dishes/:id', (req, res, next) => {
   Dish
@@ -61,6 +62,22 @@ router.delete('/dishes/:id', (req, res, next) => {
     .catch(error => next(error))
 })
 
+
+
+// get a menu dish by id
+router.get("/dishes/:id", function(req, res, next) {
+  const id = req.params.id;
+  Dish.findByPk(id)
+    .then(dish => {
+      if (!dish) {
+        return res.status(404).send({
+          message: `Event does not exit`
+        });
+      }
+      return res.send(dish);
+    })
+    .catch(err => next(err));
+});
 
 
 module.exports = router;
