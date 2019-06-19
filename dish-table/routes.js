@@ -28,4 +28,39 @@ router.post('/dishes', function(req, res, next) {
     .catch(err => next(err));
 })
 
+//update a dish
+router.put('/dishes/:id', (req, res, next) => {
+  Dish
+    .findByPk(req.params.id)
+    .then(dish => {
+      if (!dish) {
+        return res.status(404).send({
+          message: `Dish does not exist`
+        })
+      }
+      return dish.update(req.body).then(dish => res.send(dish))
+    })
+    .catch(error => next(error))
+})
+
+//delele a dish
+router.delete('/dishes/:id', (req, res, next) => {
+  Dish
+    .findByPk(req.params.id)
+    .then(dish => {
+      if (!dish) {
+        return res.status(404).send({
+          message: `Dish does not exist`
+        })
+      }
+      return dish.destroy()
+        .then(() => res.send({
+          message: `Dish was deleted`
+        }))
+    })
+    .catch(error => next(error))
+})
+
+
+
 module.exports = router;
