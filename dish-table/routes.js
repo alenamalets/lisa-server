@@ -28,4 +28,18 @@ router.post('/dishes', function(req, res, next) {
     .catch(err => next(err));
 })
 
+router.get("/dishes/:id", function(req, res, next) {
+  const id = req.params.id;
+  Dish.findByPk(id)
+    .then(dish => {
+      if (!dish) {
+        return res.status(404).send({
+          message: `Event does not exit`
+        });
+      }
+      return res.send(dish);
+    })
+    .catch(err => next(err));
+});
+
 module.exports = router;
