@@ -4,7 +4,7 @@ const router = new Router();
 const bodyParser = require('body-parser');
 
 // adds a menu dish
-router.post('/dishes', auth, function(req, res, next) {
+router.post('/dishes', function(req, res, next) {
   const dish = {
     name: req.body.name,
     typeId: req.body.typeId
@@ -19,3 +19,5 @@ router.post('/dishes', auth, function(req, res, next) {
       
     })
 })
+
+module.exports = router
