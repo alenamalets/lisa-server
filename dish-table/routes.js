@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const Type = require("../type-table/model");
 
 // adds a menu dish
-router.post('/dishes', auth, function(req, res, next) {
+router.post('/dishes', function(req, res, next) {
   const dish = {
     name: req.body.name,
     typeId: req.body.typeId

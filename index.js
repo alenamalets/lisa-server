@@ -6,6 +6,6 @@ const port = process.env.PORT || 4000;
 
 app
   .use(bodyParser.json())
-  // .use(dishRouter)
+  .use(dishRouter)
 
 const server = app.listen(port, () => console.log(`Listening on port ${port}`));

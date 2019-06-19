@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db')
-import Type from '../type-table/model'
+const Type = require ('../type-table/model')
 
 const Dish = sequelize.define('dishes',
     {
