@@ -28,7 +28,7 @@ router.post('/dishes', function(req, res, next) {
     .catch(err => next(err));
 })
 
-//update a dish
+//update dish
 router.put('/dishes/:id', (req, res, next) => {
   Dish
     .findByPk(req.params.id)
@@ -43,7 +43,7 @@ router.put('/dishes/:id', (req, res, next) => {
     .catch(error => next(error))
 })
 
-//delele a dish
+//delele dish
 router.delete('/dishes/:id', (req, res, next) => {
   Dish
     .findByPk(req.params.id)
