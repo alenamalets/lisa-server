@@ -2,6 +2,7 @@ const { Router } = require('express');
 const Dish = require('./model')
 const router = new Router();
 const bodyParser = require('body-parser');
+const Type = require("../type-table/model");
 
 // adds a menu dish
 router.post('/dishes', auth, function(req, res, next) {
@@ -16,6 +17,15 @@ router.post('/dishes', auth, function(req, res, next) {
           message: `Something went wrong`
         });
       }
-      
+      Type.findByPk(
+        req.body.typeId,
+        { include: [{ model: Dish }] },
+        req.body.id
+      ).then(type => {
+        return res.status(201).send(type);
+      });
     })
+    .catch(err => next(err));
 })
+
+module.exports = router;
