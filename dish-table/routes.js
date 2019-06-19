@@ -28,6 +28,7 @@ router.post('/dishes', function(req, res, next) {
     .catch(err => next(err));
 })
 
+// get a menu dish by id
 router.get("/dishes/:id", function(req, res, next) {
   const id = req.params.id;
   Dish.findByPk(id)

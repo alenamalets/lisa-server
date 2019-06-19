@@ -2,9 +2,7 @@ const { Router } = require("express");
 const Menu = require("./model");
 const router = new Router();
 const bodyParser = require("body-parser");
-const Type = require("../type-table/model");
 // const auth = require("../auth/middleware");
-const Dish = require("../dish-table/model");
 
 // find all menu items
 router.get("/menu", function(req, res, next) {

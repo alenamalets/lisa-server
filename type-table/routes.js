@@ -1,7 +1,5 @@
 const { Router } = require('express');
-const Dish = require('./model')
 const router = new Router();
-const bodyParser = require('body-parser');
 const Type = require("../type-table/model");
 
 // adds a menu dish
@@ -20,6 +18,7 @@ router.post('/types', function(req, res, next) {
     .catch(err => next(err));
 })
 
+//gets a type by id
 router.get("/types/:id", function(req, res, next) {
   const id = req.params.id;
   Type.findByPk(id)
