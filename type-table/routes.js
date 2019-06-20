@@ -35,7 +35,7 @@ router.delete('/types/:id', (req, res, next) => {
     .catch(error => next(error))
 })
 
-// adds a menu dish
+// adds a type
 router.post('/types', function(req, res, next) {
   const type = {
     name: req.body.name,
@@ -50,6 +50,15 @@ router.post('/types', function(req, res, next) {
     })
     .catch(err => next(err));
 })
+
+//get all types
+router.get("/types", function(req, res, next) {
+  Type.findAll()
+    .then(types => {
+      res.json(types);
+    })
+    .catch(err => next(err));
+});
 
 //gets a type by id
 router.get("/types/:id", function(req, res, next) {

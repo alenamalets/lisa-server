@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const Dish = require('./model')
 const router = new Router();
-const bodyParser = require('body-parser');
 const Type = require("../type-table/model");
 
 // adds a menu dish
@@ -62,8 +61,6 @@ router.delete('/dishes/:id', (req, res, next) => {
     .catch(error => next(error))
 })
 
-
-
 // get a menu dish by id
 router.get("/dishes/:id", function(req, res, next) {
   const id = req.params.id;
@@ -75,6 +72,19 @@ router.get("/dishes/:id", function(req, res, next) {
         });
       }
       return res.send(dish);
+    })
+    .catch(err => next(err));
+});
+
+// get a menu dish by type
+router.get("/dishes", function(req, res, next) {
+  Dish.findAll({
+    where: {
+      type: req.params.typeId
+    }
+  })
+    .then(dishes => {
+      res.json(dishes);
     })
     .catch(err => next(err));
 });
