@@ -1,10 +1,10 @@
 const { Router } = require('express')
-const Type = require('./model')
+const Dishtype = require('./model')
 const router = new Router()
 
 //update type
 router.put('/types/:id', (req, res, next) => {
-  Type
+  Dishtype
     .findByPk(req.params.id)
     .then(type => {
       if (!type) {
@@ -19,7 +19,7 @@ router.put('/types/:id', (req, res, next) => {
 
 //delele type
 router.delete('/types/:id', (req, res, next) => {
-  Type
+  Dishtype
     .findByPk(req.params.id)
     .then(type => {
       if (!type) {
@@ -37,10 +37,11 @@ router.delete('/types/:id', (req, res, next) => {
 
 // adds a type
 router.post('/types', function(req, res, next) {
+  console.log('REQ', req.body)
   const type = {
     name: req.body.name,
   };
-  Type.create(type)
+  Dishtype.create(type)
     .then(type => {
       if (!type) {
         return res.status(404).send({
@@ -53,7 +54,7 @@ router.post('/types', function(req, res, next) {
 
 //get all types
 router.get("/types", function(req, res, next) {
-  Type.findAll()
+  Dishtype.findAll()
     .then(types => {
       res.json(types);
     })
@@ -63,11 +64,11 @@ router.get("/types", function(req, res, next) {
 //gets a type by id
 router.get("/types/:id", function(req, res, next) {
   const id = req.params.id;
-  Type.findByPk(id)
+  Dishtype.findByPk(id)
     .then(type => {
       if (!type) {
         return res.status(404).send({
-          message: `Event does not exit`
+          message: `Type does not exit`
         });
       }
       return res.send(type);
