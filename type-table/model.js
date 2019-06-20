@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db')
 
-const Type = sequelize.define('types',
+const Dishtype = sequelize.define('types',
     {
         name: {
             type: Sequelize.STRING,
@@ -13,4 +13,4 @@ const Type = sequelize.define('types',
         tableName: 'types'
     })
 
-module.exports = Type
+module.exports = Dishtype
